@@ -13,5 +13,4 @@
 	<feed href="http://sailortwain.com/feed/" interval="600" />
 	<feed href="http://www.rssweather.com/wx/us/ar/springdale/rss.php" interval="60" />
 	<feed href="http://www.woot.com/Blog/Feed.ashx" interval="30" />
-	<feed href="http://natedawg.dyndns.org:8080/cgi-bin/tfeed.sh" interval="15" />
 </feedList>
