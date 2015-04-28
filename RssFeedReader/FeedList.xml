@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<feedList>
+	<disabledStartTime>23:00</disabledStartTime>
+	<disabledEndTime>07:30</disabledEndTime>
+	<feed href="http://xkcd.com/rss.xml" interval="600" />
+	<feed href="http://blogs.discovermagazine.com/badastronomy/wp-rss.php" interval="30" />
+	<feed href="http://feeds.feedburner.com/AtheistMedia?format=xml" interval="30" />
+	<feed href="http://feeds.feedburner.com/scienceblogs/evolutionblog" interval="600" />
+	<feed href="http://www.theness.com/neurologicablog/?feed=rss2" interval="60" />
+	<feed href="http://feeds.feedburner.com/scienceblogs/pharyngula" interval="15" />
+	<feed href="http://feeds.feedburner.com/scienceblogs/insolence" interval="60" />
+	<feed href="http://richarddawkins.net/feed.php" interval="30" />
+	<feed href="http://sailortwain.com/feed/" interval="600" />
+	<feed href="http://www.rssweather.com/wx/us/ar/springdale/rss.php" interval="60" />
+	<feed href="http://www.woot.com/Blog/Feed.ashx" interval="30" />
+	<feed href="http://natedawg.dyndns.org:8080/cgi-bin/tfeed.sh" interval="15" />
+</feedList>

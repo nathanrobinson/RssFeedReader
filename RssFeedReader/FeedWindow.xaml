@@ -1,0 +1,220 @@
+﻿<Window x:Class="RssFeedReader.FeedWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Rss Feed Reader" 
+        Height="590" Width="367"
+        Loaded="Window_Loaded"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStyle="None"
+    AllowsTransparency="True"
+        Background="Transparent" ResizeMode="CanResizeWithGrip" Opacity="1" 
+        Name="MainWindow"
+        Activated="MainWindow_Activated"
+        Deactivated="MainWindow_Activated" ShowInTaskbar="False" 
+        Closed="MainWindow_Closed"
+        StateChanged="MainWindow_StateChanged">
+    <Window.Resources>
+        <Storyboard x:Key="FadeIn">
+                        <DoubleAnimation Storyboard.TargetName="MainWindow"
+                             Storyboard.TargetProperty="(Window.Opacity)"
+                             From="0.5" To="1" Duration="00:00:0.5" />
+                    </Storyboard>
+        <Storyboard x:Key="FadeOut">
+                        <DoubleAnimation Storyboard.TargetName="MainWindow"
+                             Storyboard.TargetProperty="(Window.Opacity)"
+                             From="1" To="0.5" Duration="00:00:02" />
+                    </Storyboard>
+        <Storyboard x:Key="TitleAlert" >
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[0].Color"
+                From="#90003200" To="#320000" 
+                Duration="0:0:1.5"
+                AutoReverse="True" RepeatBehavior="Forever"/>
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[1].Color"
+                From="#9E9DD960" To="#D90000" 
+                Duration="0:0:1.5"
+                AutoReverse="True" RepeatBehavior="Forever"/>
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[2].Color"
+                From="#9E9DD960" To="#D90000" 
+                Duration="0:0:1.5"
+                AutoReverse="True" RepeatBehavior="Forever"/>
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[3].Color"
+                From="#BE689040" To="#900000" 
+                Duration="0:0:1.5"
+                AutoReverse="True" RepeatBehavior="Forever" />
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[4].Color"
+                From="#90003200" To="#320000" 
+                Duration="0:0:1.5"
+                AutoReverse="True" RepeatBehavior="Forever" />
+        </Storyboard>
+        <Storyboard x:Key="StopTitleAlert" >
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[0].Color"
+                To="#90003200" Duration="0:0:1.5"/>
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[1].Color"
+                To="#9E9DD960" Duration="0:0:1.5"/>
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[2].Color"
+                To="#9E9DD960" Duration="0:0:1.5"/>
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[3].Color"
+                To="#BE689040" Duration="0:0:1.5" />
+            <ColorAnimation 
+                Storyboard.TargetName="bdrTitle"
+                Storyboard.TargetProperty="Background.GradientStops[4].Color"
+                To="#90003200" Duration="0:0:1.5"/>
+        </Storyboard>
+
+        <LinearGradientBrush x:Key="WhiteBackroundGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#BBEFEDEE" Offset="0"/>
+            <GradientStop Color="#DDFFFFFF" Offset="0.15"/>
+            <GradientStop Color="#DDFFFFFF" Offset="0.25"/>
+            <GradientStop Color="#CCF9F7F8" Offset="0.75"/>
+            <GradientStop Color="#BBEFEDEE" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="BackroundGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#90000032" Offset="0"/>
+			<GradientStop Color="#9E9D60D9" Offset="0.15"/>
+            <GradientStop Color="#9E9D60D9" Offset="0.25"/>
+            <GradientStop Color="#BE684090" Offset="0.75"/>
+            <GradientStop Color="#90000032" Offset="1"/>
+		</LinearGradientBrush>
+        <LinearGradientBrush x:Key="SelectedGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#90003200" Offset="0"/>
+            <GradientStop Color="#9E9DD960" Offset="0.15"/>
+            <GradientStop Color="#9E9DD960" Offset="0.25"/>
+            <GradientStop Color="#BE689040" Offset="0.75"/>
+            <GradientStop Color="#90003200" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="RedGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#90320000" Offset="0"/>
+            <GradientStop Color="#9ED90000" Offset="0.15"/>
+            <GradientStop Color="#9ED90000" Offset="0.25"/>
+            <GradientStop Color="#BE900000" Offset="0.75"/>
+            <GradientStop Color="#90320000" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="BlueGradientBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#90000032" Offset="0"/>
+            <GradientStop Color="#9E0000D9" Offset="0.15"/>
+            <GradientStop Color="#9E0000D9" Offset="0.25"/>
+            <GradientStop Color="#BE000090" Offset="0.75"/>
+            <GradientStop Color="#90000032" Offset="1"/>
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="BlueBorderBrush" Color="#DD44A4F8"/>
+	
+            <!--Item header-->
+            <DataTemplate x:Key="ItemHeader">
+                <Border CornerRadius="10,10,0,0" Background="{DynamicResource SelectedGradientBrush}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Path=Title}"  TextWrapping="WrapWithOverflow"
+                           Grid.Column="0" Grid.Row="0" Foreground="Black" FontWeight="Bold" MaxWidth="200" 
+                               Margin="2"/>
+                       <TextBlock Grid.Column="1" Grid.Row="0"  Text="{Binding Path=Posted}" TextWrapping="WrapWithOverflow" 
+                                  Margin="5" Foreground="Black" FontWeight="Bold" MaxWidth="100" />
+                </Grid></Border>
+            </DataTemplate>
+            <!--Item Template-->
+            <DataTemplate x:Key="ItemTemplate">
+                <Border Margin="1" BorderBrush="{DynamicResource BlueBorderBrush}" BorderThickness="1" CornerRadius="10" Background="{DynamicResource WhiteBackroundGradientBrush}">
+                    <Expander Header="{Binding}" 
+                              HeaderTemplate="{StaticResource ItemHeader}"
+                              IsTabStop="False" HorizontalAlignment="Left" 
+                              IsEnabled="True" ExpandDirection="Down"
+                              MouseDoubleClick="Expander_MouseDoubleClick"
+                              Expanded="Expander_Expanded">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox MaxWidth="300" 
+                             IsReadOnly="True" Margin="10" Foreground="Blue" TextDecorations="Underline" 
+                             Text="{Binding Link}" 
+                             MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" />
+                        <ScrollViewer Grid.Row="1" MaxHeight="200" Width="325" VerticalScrollBarVisibility="Auto"
+                                      Content="{Binding DescriptionControl}"/>
+                                                    <!--<TextBlock MaxWidth="300" Text="{Binding DescriptionText}" TextWrapping="WrapWithOverflow" TextDecorations="None" />
+                                                        </ScrollViewer>-->
+                    </Grid>
+                </Expander>
+                </Border>
+            </DataTemplate>
+            <!--Channel Header-->
+            <DataTemplate x:Key="ChannelHeader">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65*"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="35" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="7" Text="{Binding Path=Title}" Foreground="White" FontWeight="Bold" MaxWidth="350" TextWrapping="WrapWithOverflow"/>
+                <TextBlock Grid.Column="1" Margin="5" Text="{Binding Path=NewChildren}" Foreground="#D90000" FontWeight="Bold" MouseRightButtonUp="TextBlock_MouseRightButtonUp"/>
+                <TextBlock Grid.Column="2" Margin="5" Text="{Binding Path=NextUpdateCountdown}" Foreground="#9DD960" FontWeight="Bold"/>
+            </Grid>
+            </DataTemplate>           
+        <!--Channel Template-->
+                <HierarchicalDataTemplate x:Key="ChannelTemplate">
+                    <Border x:Name="ChannelTemplateBorder" Margin="1" CornerRadius="10" 
+                            Background="{DynamicResource BackroundGradientBrush}"
+                            BorderBrush="{DynamicResource BlueBorderBrush}"
+                            BorderThickness="1">
+                <Expander Header="{Binding}" HeaderTemplate="{DynamicResource ChannelHeader}">
+                        <ItemsControl ItemsSource="{Binding Items}"
+                                 ItemTemplate="{StaticResource ItemTemplate}"
+                                 BorderBrush="Transparent" Background="Transparent" />
+                    </Expander>
+            </Border>
+            </HierarchicalDataTemplate>
+        </Window.Resources>
+    <!-- Content -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="622*" />
+            <RowDefinition Height="15" />
+        </Grid.RowDefinitions>
+        <Border Name="bdrTitle" CornerRadius="10,5,5,5" Background="{DynamicResource SelectedGradientBrush}" Grid.ColumnSpan="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5,2,2,2" Text="Rss Feed Reader"/>
+                <TextBlock Grid.Column="1" Margin="5,2,2,2" Name="tbTimeLeft"/>
+                <Button Click="Minimize_Click" Grid.Column="2" Background="{StaticResource BlueGradientBrush}" Foreground="White" FontWeight="Bold" FontSize="8">_</Button>
+                <Button Click="Exit_Click" Grid.Column="3" Background="{StaticResource RedGradientBrush}" Foreground="White" FontWeight="Bold" FontSize="8">X</Button>
+            </Grid>
+        </Border>
+        <Border HorizontalAlignment="Right" Width="20" CornerRadius="20,5,5,5" Grid.Row="2"  Background="{DynamicResource BackroundGradientBrush}" />
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Name="mainScrollView">
+            <ScrollViewer.LayoutTransform>
+                <ScaleTransform ScaleY="1"/> 
+            </ScrollViewer.LayoutTransform>
+            <ItemsControl Name="tvChannels" 
+                 Background="Transparent" 
+                 ItemTemplate="{StaticResource ChannelTemplate}" 
+                     BorderBrush="Transparent" />
+        </ScrollViewer>
+    </Grid>
+</Window>
