@@ -5,6 +5,4 @@ http://feeds.feedburner.com/scienceblogs/evolutionblog
 http://www.theness.com/neurologicablog/?feed=rss2
 http://feeds.feedburner.com/scienceblogs/pharyngula
 http://feeds.feedburner.com/scienceblogs/insolence
-http://richarddawkins.net/feed.php
 http://sailortwain.com/feed/
-http://natedawg.dyndns.org:8080/cgi-bin/tfeed.sh
